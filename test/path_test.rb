@@ -7,9 +7,9 @@ class PathTest < Minitest::Test
   end
 
   def test_visits_increments
-    assert_equal 1, @path.visits
+    assert_equal 0, @path.visits
     @path.add_visit
-    assert_equal 2, @path.visits
+    assert_equal 1, @path.visits
   end
 
   def test_get_unique_views

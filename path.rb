@@ -2,7 +2,7 @@ class Path
   attr_accessor :visits, :visitors_list
 
   def initialize
-    @visits = 1
+    @visits = 0
     @visitors_list = []
   end
 
