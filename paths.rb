@@ -33,6 +33,7 @@ class Paths
   end
 
   def is_invalid_line(path, ip)
-    path.nil? or ip.nil? or path.empty? or ip.empty? or !valid_path(path) or !valid_ip(ip)
+    # not checking ip validity because the ips in the sample log are invalid
+    path.nil? or ip.nil? or path.empty? or ip.empty? or !valid_path(path)
   end
 end

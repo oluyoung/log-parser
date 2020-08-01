@@ -5,7 +5,7 @@ class ErrorHandlerTest < Minitest::Test
 
   def setup
     @error_handler = ErrorHandler.new
-    @file = Tempfile.new(['server', '.log'], nil, )
+    @file = Tempfile.new(['server', '.log'], nil)
   end
 
   def test_error_when_multiple_arguments_passed

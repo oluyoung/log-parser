@@ -57,15 +57,7 @@ class PathsTest < Minitest::Test
   end
 
   def test_add_invalid_path
-    @paths.add_path('?badpath', @ip)
-    lengthWithNewPath = @paths.paths.length
-
-    assert_equal 0, lengthWithNewPath
-  end
-
-  def test_add_invalid_ip
-    @paths.add_path(@path, '1234')
-
+    @paths.add_path('\\path', @ip)
     lengthWithNewPath = @paths.paths.length
 
     assert_equal 0, lengthWithNewPath
@@ -75,13 +67,17 @@ class PathsTest < Minitest::Test
     add_multiple_paths
 
     sorted = @paths.paths_by_visitations
+
     assert_equal 4, sorted.first[1].visits
+    assert_equal '/page/18', sorted.first[0]
   end
 
   def test_get_sorted_paths_by_unique_views
     add_multiple_paths
     sorted = @paths.paths_by_unique_views
+
     assert_equal 3, sorted.first[1].unique_views
+    assert_equal '/page/18', sorted.first[0]
   end
 
   protected
