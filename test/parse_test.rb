@@ -1,6 +1,4 @@
 require_relative 'test_helper'
-require 'spy/integration'
-require 'tempfile'
 
 class ParseTest < Minitest::Test
   def setup

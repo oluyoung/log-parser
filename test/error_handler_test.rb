@@ -1,5 +1,4 @@
 require_relative 'test_helper'
-require 'tempfile'
 
 class ErrorHandlerTest < Minitest::Test
 

@@ -13,9 +13,9 @@ Project to parse a .log file into an ordered list of unique views and most visit
 
 ### Run
 
-1. bundle install
-2. run `ruby parser.rb <file_name>.log`
-3. Check for `_most_visited.txt` and `_unique_views.txt` in your current working directory
+1. run `bundle install` to install the required gems
+2. run `./parser.rb <file_name>.log`
+3. View the `_most_visited.txt` and `_unique_views.txt` files that are now in your current working directory
 
 #### Testing & Coverage
 
