@@ -14,6 +14,10 @@ class Path
     @visitors_list.length
   end
 
+  def average_views
+    @visits / unique_views
+  end
+
   def add_uniqiue_visitor(ip)
     @visitors_list << ip unless @visitors_list.include? ip
   end

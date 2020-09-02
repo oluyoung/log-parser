@@ -1,13 +1,13 @@
 require 'pathname'
 
 class ErrorHandler
-  def check_multiple_args(argument_size)
+  def self.check_multiple_args(argument_size)
     if argument_size > 1
       raise ArgumentError, "Only 1 file can be parsed at a time"
     end
   end
 
-  def validate_file(file)
+  def self.validate_file(file)
     raise ArgumentError, "A file must be passed" unless file
 
     pn = Pathname.new(file)

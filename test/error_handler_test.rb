@@ -3,34 +3,33 @@ require_relative 'test_helper'
 class ErrorHandlerTest < Minitest::Test
 
   def setup
-    @error_handler = ErrorHandler.new
     @file = Tempfile.new(['server', '.log'], nil)
   end
 
   def test_error_when_multiple_arguments_passed
     err = assert_raises ArgumentError do |error|
-      @error_handler.check_multiple_args(3)
+      ErrorHandler.check_multiple_args(3)
     end
     assert_equal "Only 1 file can be parsed at a time", err.message
   end
 
   def test_error_when_no_argument
     err = assert_raises ArgumentError do
-      @error_handler.validate_file(nil)
+      ErrorHandler.validate_file(nil)
     end
     assert_equal "A file must be passed", err.message
   end
 
   def test_error_if_file_does_not_exist
     err = assert_raises ArgumentError do
-      @error_handler.validate_file('x.log')
+      ErrorHandler.validate_file('x.log')
     end
     assert_equal "File does not exist", err.message
   end
 
   def test_error_if_file_is_file
     err = assert_raises StandardError do
-      @error_handler.validate_file('.')
+      ErrorHandler.validate_file('.')
     end
     assert_equal "Enter a file not a directory", err.message
   end
@@ -39,7 +38,7 @@ class ErrorHandlerTest < Minitest::Test
     file = Tempfile.new('server.txt')
 
     err = assert_raises StandardError do
-      @error_handler.validate_file(file.path)
+      ErrorHandler.validate_file(file.path)
     end
     assert_equal "File is not a log file", err.message
 
@@ -49,7 +48,7 @@ class ErrorHandlerTest < Minitest::Test
 
   def test_error_if_file_is_empty
     err = assert_raises StandardError do
-      @error_handler.validate_file(@file.path)
+      ErrorHandler.validate_file(@file.path)
     end
     assert_equal "File is empty", err.message
   end
@@ -58,7 +57,7 @@ class ErrorHandlerTest < Minitest::Test
     remove_file_permissions
 
     err = assert_raises StandardError do
-      @error_handler.validate_file(@file.path)
+      ErrorHandler.validate_file(@file.path)
     end
     assert_equal "Parser cannot read the file, check its permissions", err.message
   end

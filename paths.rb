@@ -10,10 +10,10 @@ class Paths
   end
 
   def add_path(path, ip)
-    if not self.path_exist path and not self.is_invalid_line path, ip
+    if !(path_exists path) && !(is_invalid_line path, ip)
       @paths[path] = Path.new
     end
-    if self.path_exist(path)
+    if path_exists path
       @paths[path].add_visit
       @paths[path].add_uniqiue_visitor(ip)
     end
@@ -27,8 +27,12 @@ class Paths
     @paths.sort_by {|path, values| -values.unique_views }.to_h
   end
 
+  def paths_by_average_views
+    @paths.sort_by {|path, values| -values.average_views }.to_h
+  end
+
   protected
-  def path_exist(path)
+  def path_exists(path)
     !!@paths[path]
   end
 

@@ -80,6 +80,28 @@ class PathsTest < Minitest::Test
     assert_equal '/page/18', sorted.first[0]
   end
 
+  def test_get_sorted_paths_by_average_views
+    paths = Paths.new
+    page = '/page/1'
+    page2 = '/page/2'
+    ip = '1.1.1.1'
+
+    paths.add_path(page, ip)
+    paths.add_path(page2, ip)
+
+    paths.paths[page].visits = 10
+    paths.paths[page].visitors_list.push('1.1.1.2')
+    paths.paths[page2].visits = 20
+    paths.paths[page2].visitors_list.push('1.1.1.2')
+
+    sorted = paths.paths_by_average_views
+
+    assert_equal 5, paths.paths[page].average_views
+    assert_equal 10, paths.paths[page2].average_views
+    assert_equal '/page/2', sorted.first[0]
+    assert_equal 10, sorted.first[1].average_views
+  end
+
   protected
   def add_multiple_paths
     for i in 1..20
