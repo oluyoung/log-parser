@@ -3,7 +3,6 @@ require 'pathname'
 
 class PrinterTest < Minitest::Test
   def setup
-    @printer = Printer.new
     @pn = Pathname
     @paths = Paths.new
     @paths.paths['/about'] = Path.new
@@ -12,22 +11,22 @@ class PrinterTest < Minitest::Test
   end
 
   def test_dont_write_visitations_if_paths_empty
-    @printer.write_visitations({})
+    Printer.write_visitations({})
     refute Pathname.new('_most_visited.txt').exist?
   end
 
   def test_write_visitations_if_paths
-    @printer.write_visitations @paths.paths
+    Printer.write_visitations @paths.paths
     assert Pathname.new('_most_visited.txt').exist?
   end
 
   def test_dont_write_unique_views_if_path_empty
-    @printer.write_unique_views({})
+    Printer.write_unique_views({})
     refute Pathname.new('_most_visited.txt').exist?
   end
 
   def test_write_unique_views
-    @printer.write_unique_views @paths.paths
+    Printer.write_unique_views @paths.paths
     assert Pathname.new('_unique_views.txt').exist?
   end
 

@@ -22,9 +22,8 @@ class Parse
   end
 
   def generate_output
-    printer = Printer.new
-    printer.write_visitations(@paths.paths_by_visitations)
-    printer.write_unique_views(@paths.paths_by_unique_views)
+    Printer.write_visitations(@paths.paths_by_visitations)
+    Printer.write_unique_views(@paths.paths_by_unique_views)
   end
 
   def add_path(line)
